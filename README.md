@@ -9,6 +9,11 @@ Built for [Claude Code](https://claude.com/code). Your data never leaves your ma
 **Never touched a terminal? Read [SETUP.md](SETUP.md) instead of this file.** It's
 written for that, step by step.
 
+![The dashboard: net for the period, stat tiles, CSV export, and the two charts](docs/dashboard.png)
+
+*One self-contained HTML file. No server, no build step, no internet. Double-click it.
+All figures shown are invented example data.*
+
 ---
 
 ## What it actually does
@@ -61,6 +66,13 @@ guesses categories is wrong silently. An agent doing arithmetic is wrong silentl
 Neither one crosses over.
 
 ### Chart of accounts
+
+![The chart of accounts, with one account's register expanded to show individual charges](docs/chart-of-accounts.png)
+
+*Click any account to open its register: date, description, which of your real
+accounts paid it, amount, and whether a receipt is attached. Note the Liability
+block at the bottom — the credit card shows 12 transactions and $2,112 of movement,
+and contributes exactly zero to expenses, because paying a card is not a cost.*
 
 `chart_of_accounts.json` is a real one. Each account has a number, a type, a detail
 type, and (for business expenses) a Schedule C line.
