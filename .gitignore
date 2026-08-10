@@ -1,0 +1,31 @@
+# Your financial data. None of this belongs in a repo.
+books.db
+books.db-journal
+out/
+inbox/*/*
+!inbox/*/.gitkeep
+archive/*
+!archive/.gitkeep
+
+# Statements and exports, wherever they land
+*.pdf
+*.csv
+*.xlsx
+*.xls
+*.ofx
+*.qfx
+*.qbo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# OS + editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

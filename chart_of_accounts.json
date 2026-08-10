@@ -1,0 +1,126 @@
+{
+  "_comment": [
+    "Chart of accounts, QuickBooks-style. code -> name, type, detail, entity, schedule_c.",
+    "type drives everything downstream: Income -> counts as income, Expense/COGS -> counts as",
+    "expense, Asset/Liability/Equity -> transfer, which never touches a total. That is why a",
+    "card payment (Liability 2010) and an ATM pull (Asset 1090) are automatically neutral.",
+    "schedule_c lives HERE, not on the vendor rule, so changing a line changes it everywhere.",
+    "Numbering: 1000 asset, 2000 liability, 3000 equity, 4000 income, 5000 COGS, 6000 business",
+    "expense, 7000 personal expense. x990 is the parking lot for each block, kept visible on",
+    "purpose so 'uncategorized' can never hide inside a real account."
+  ],
+
+  "1010": { "name": "Business Checking - operating", "type": "Asset", "detail": "Bank", "entity": "business" },
+  "1020": { "name": "Business Checking - revenue", "type": "Asset", "detail": "Bank", "entity": "business" },
+  "1090": { "name": "Cash on Hand (undeposited / ATM)", "type": "Asset", "detail": "Cash", "entity": "business" },
+  "1510": { "name": "Personal Checking - primary", "type": "Asset", "detail": "Bank", "entity": "personal" },
+  "1520": { "name": "Personal Checking - secondary", "type": "Asset", "detail": "Bank", "entity": "personal" },
+  "1590": { "name": "Cash on Hand", "type": "Asset", "detail": "Cash", "entity": "personal" },
+
+  "2010": { "name": "Business Credit Card", "type": "Liability", "detail": "Credit Card", "entity": "business" },
+  "2090": { "name": "Credit Card - Other", "type": "Liability", "detail": "Credit Card", "entity": "business" },
+  "2510": { "name": "Personal Credit Card", "type": "Liability", "detail": "Credit Card", "entity": "personal" },
+
+  "3010": { "name": "Owner's Draw", "type": "Equity", "detail": "Owner Equity", "entity": "business" },
+  "3020": { "name": "Owner's Contribution", "type": "Equity", "detail": "Owner Equity", "entity": "business" },
+  "3510": { "name": "Family Transfers In", "type": "Equity", "detail": "Personal Transfer", "entity": "personal" },
+  "3520": { "name": "Family Transfers Out", "type": "Equity", "detail": "Personal Transfer", "entity": "personal" },
+  "3590": { "name": "Transfer Between Own Accounts", "type": "Equity", "detail": "Internal Transfer", "entity": "personal" },
+
+  "4010": { "name": "Client Revenue - Stripe", "type": "Income", "detail": "Sales of Product Income", "entity": "business" },
+  "4020": { "name": "Client Revenue - PayPal", "type": "Income", "detail": "Sales of Product Income", "entity": "business" },
+  "4030": { "name": "Course & Digital Product Sales", "type": "Income", "detail": "Sales of Product Income", "entity": "business" },
+  "4040": { "name": "Community Memberships (Circle)", "type": "Income", "detail": "Service/Fee Income", "entity": "business" },
+  "4050": { "name": "Affiliate & Sponsorship Income", "type": "Income", "detail": "Other Primary Income", "entity": "business" },
+  "4060": { "name": "Consulting & Coaching", "type": "Income", "detail": "Service/Fee Income", "entity": "business" },
+  "4900": { "name": "Refunds & Chargebacks", "type": "Income", "detail": "Discounts/Refunds Given", "entity": "business" },
+  "4990": { "name": "Unidentified Deposit", "type": "Income", "detail": "Uncategorized Income", "entity": "business" },
+  "4510": { "name": "Wages & Salary", "type": "Income", "detail": "Personal Income", "entity": "personal" },
+  "4520": { "name": "Tax Refunds", "type": "Income", "detail": "Personal Income", "entity": "personal" },
+  "4530": { "name": "Other Personal Income", "type": "Income", "detail": "Personal Income", "entity": "personal" },
+
+  "5010": { "name": "Merchant Processing Fees", "type": "COGS", "detail": "Cost of Labor - COS", "entity": "business", "schedule_c": "10" },
+  "5020": { "name": "Contractor & VA Labor", "type": "COGS", "detail": "Cost of Labor - COS", "entity": "business", "schedule_c": "11" },
+  "5030": { "name": "AI Generation & Render Credits", "type": "COGS", "detail": "Supplies & Materials - COS", "entity": "business", "schedule_c": "22" },
+
+  "6110": { "name": "Software - AI & LLM", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6120": { "name": "Software - CRM & Automation", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6130": { "name": "Software - Video & Audio", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6140": { "name": "Software - Design & Content", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6150": { "name": "Software - Data & Research", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6160": { "name": "Software - Social Publishing", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6170": { "name": "Software - Productivity & Storage", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6180": { "name": "Community Platform (Circle)", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+  "6190": { "name": "Domains, Hosting & Web", "type": "Expense", "detail": "Office/General Admin", "entity": "business", "schedule_c": "18" },
+
+  "6210": { "name": "Advertising & Promotion", "type": "Expense", "detail": "Advertising/Promotional", "entity": "business", "schedule_c": "8" },
+  "6220": { "name": "Platform Badges & Verification", "type": "Expense", "detail": "Advertising/Promotional", "entity": "business", "schedule_c": "8" },
+
+  "6310": { "name": "Education & Training Programs", "type": "Expense", "detail": "Other Business Expenses", "entity": "business", "schedule_c": "27a" },
+  "6320": { "name": "Books & Research Subscriptions", "type": "Expense", "detail": "Other Business Expenses", "entity": "business", "schedule_c": "27a" },
+
+  "6410": { "name": "Travel - Airfare", "type": "Expense", "detail": "Travel", "entity": "business", "schedule_c": "24a" },
+  "6420": { "name": "Travel - Lodging", "type": "Expense", "detail": "Travel", "entity": "business", "schedule_c": "24a" },
+  "6430": { "name": "Travel - Ground & Rideshare", "type": "Expense", "detail": "Travel", "entity": "business", "schedule_c": "24a" },
+  "6440": { "name": "Meals - Business (50% deductible)", "type": "Expense", "detail": "Travel Meals", "entity": "business", "schedule_c": "24b" },
+
+  "6510": { "name": "Office Supplies", "type": "Expense", "detail": "Supplies & Materials", "entity": "business", "schedule_c": "22" },
+  "6520": { "name": "Computer Equipment & Hardware", "type": "Expense", "detail": "Supplies & Materials", "entity": "business", "schedule_c": "22" },
+  "6530": { "name": "Studio & Production Gear", "type": "Expense", "detail": "Supplies & Materials", "entity": "business", "schedule_c": "22" },
+
+  "6610": { "name": "Bank & Card Fees", "type": "Expense", "detail": "Bank Charges", "entity": "business", "schedule_c": "10" },
+  "6620": { "name": "Interest Expense", "type": "Expense", "detail": "Interest Paid", "entity": "business", "schedule_c": "16b" },
+  "6630": { "name": "Foreign Transaction Fees", "type": "Expense", "detail": "Bank Charges", "entity": "business", "schedule_c": "10" },
+
+  "6710": { "name": "Legal & Professional Services", "type": "Expense", "detail": "Legal & Professional Fees", "entity": "business", "schedule_c": "17" },
+  "6720": { "name": "Accounting & Tax Prep", "type": "Expense", "detail": "Legal & Professional Fees", "entity": "business", "schedule_c": "17" },
+  "6730": { "name": "Business Licenses & Filings", "type": "Expense", "detail": "Taxes & Licenses", "entity": "business", "schedule_c": "23" },
+  "6740": { "name": "Business Insurance", "type": "Expense", "detail": "Insurance", "entity": "business", "schedule_c": "15" },
+
+  "6810": { "name": "Auto - Fuel", "type": "Expense", "detail": "Car & Truck", "entity": "business", "schedule_c": "9" },
+  "6820": { "name": "Auto - Repairs & Maintenance", "type": "Expense", "detail": "Car & Truck", "entity": "business", "schedule_c": "9" },
+
+  "6910": { "name": "Phone & Internet (business share)", "type": "Expense", "detail": "Utilities", "entity": "business", "schedule_c": "25" },
+  "6920": { "name": "Home Office", "type": "Expense", "detail": "Home Office", "entity": "business", "schedule_c": "30" },
+
+  "6990": { "name": "Uncategorized Business Expense", "type": "Expense", "detail": "Uncategorized Expense", "entity": "business", "schedule_c": "27a" },
+
+  "7010": { "name": "Groceries", "type": "Expense", "detail": "Food & Dining", "entity": "personal" },
+  "7020": { "name": "Household Supplies", "type": "Expense", "detail": "Home", "entity": "personal" },
+  "7030": { "name": "Amazon (unitemized)", "type": "Expense", "detail": "Shopping", "entity": "personal" },
+
+  "7110": { "name": "Electric & Gas", "type": "Expense", "detail": "Utilities", "entity": "personal" },
+  "7120": { "name": "Water & Sewer", "type": "Expense", "detail": "Utilities", "entity": "personal" },
+  "7130": { "name": "Internet & Cable", "type": "Expense", "detail": "Utilities", "entity": "personal" },
+  "7140": { "name": "Mobile Phone", "type": "Expense", "detail": "Utilities", "entity": "personal" },
+
+  "7210": { "name": "Life Insurance", "type": "Expense", "detail": "Insurance", "entity": "personal" },
+  "7220": { "name": "Auto Insurance", "type": "Expense", "detail": "Insurance", "entity": "personal" },
+  "7230": { "name": "Home Security", "type": "Expense", "detail": "Home", "entity": "personal" },
+  "7240": { "name": "Health Insurance", "type": "Expense", "detail": "Insurance", "entity": "personal" },
+
+  "7310": { "name": "Medical & Dental", "type": "Expense", "detail": "Health", "entity": "personal" },
+  "7320": { "name": "Pharmacy", "type": "Expense", "detail": "Health", "entity": "personal" },
+  "7330": { "name": "Therapy & Counseling", "type": "Expense", "detail": "Health", "entity": "personal" },
+
+  "7410": { "name": "Dining & Takeout", "type": "Expense", "detail": "Food & Dining", "entity": "personal" },
+  "7420": { "name": "Coffee", "type": "Expense", "detail": "Food & Dining", "entity": "personal" },
+
+  "7510": { "name": "Fuel", "type": "Expense", "detail": "Auto & Transport", "entity": "personal" },
+  "7520": { "name": "Auto Maintenance", "type": "Expense", "detail": "Auto & Transport", "entity": "personal" },
+  "7530": { "name": "Auto Payment", "type": "Expense", "detail": "Auto & Transport", "entity": "personal" },
+
+  "7610": { "name": "Home Improvement", "type": "Expense", "detail": "Home", "entity": "personal" },
+  "7620": { "name": "Furniture & Home Goods", "type": "Expense", "detail": "Home", "entity": "personal" },
+  "7630": { "name": "Clothing", "type": "Expense", "detail": "Shopping", "entity": "personal" },
+
+  "7710": { "name": "Streaming Services", "type": "Expense", "detail": "Entertainment", "entity": "personal" },
+  "7720": { "name": "Personal Subscriptions", "type": "Expense", "detail": "Entertainment", "entity": "personal" },
+
+  "7810": { "name": "Childcare & School", "type": "Expense", "detail": "Family", "entity": "personal" },
+  "7820": { "name": "Gifts & Donations", "type": "Expense", "detail": "Family", "entity": "personal" },
+
+  "7910": { "name": "Interest & Late Fees", "type": "Expense", "detail": "Fees", "entity": "personal" },
+
+  "7990": { "name": "Uncategorized Personal Expense", "type": "Expense", "detail": "Uncategorized Expense", "entity": "personal" }
+}
